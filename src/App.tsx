@@ -16,6 +16,10 @@ import LanguageCreate from './pages/Languages/LanguageCreate'
 import LanguageDelete from './pages/Languages/LanguageDelete'
 import SeasonCreate from './pages/Seasons/SeasonCreate'
 import SeasonDelete from './pages/Seasons/SeasonDelete'
+import GroupCreate from './pages/Groups/GroupCreate'
+import GroupDelete from './pages/Groups/GroupDelete'
+import LessonCreate from './pages/Lessons/LessonCreate'
+import LessonDelete from './pages/Lessons/LessonDelete'
 
 
 function App() {
@@ -42,8 +46,19 @@ function App() {
           <Route path='create' element={<SeasonCreate setPath={setPath}/>} />
           <Route path='delete' element={<SeasonDelete setPath={setPath}/>} />
         </Route>
-        <Route path='/groups' element={<Groups setPath={setPath}/>} />
-        <Route path='/lessons' element={<Lessons setPath={setPath}/>} />
+
+        <Route path='/groups'>
+          <Route index element={<Groups setPath={setPath}/>} />
+          <Route path='create' element={<GroupCreate setPath={setPath}/>} />
+          <Route path='delete' element={<GroupDelete setPath={setPath}/>} />
+        </Route>
+        
+        <Route path='/lessons'>
+          <Route index element={<Lessons setPath={setPath}/>} />
+          <Route path='create' element={<LessonCreate setPath={setPath}/>} />
+          <Route path='delete' element={<LessonDelete setPath={setPath}/>} />
+        </Route>
+        
         <Route path='/videos'>
           <Route index element={<Videos setPath={setPath}/>} />
           <Route path='create' element={<VideoCreate setPath={setPath}/>} />

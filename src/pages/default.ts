@@ -40,6 +40,40 @@ export const defaultGroups = [
     }
 ]
 
+export const defaultLessons = [
+  {
+    "_id": "67b175ec1baf452f4e87f649",
+    "total_xp": 10,
+    "group_id": "67b0b3748087d324db77af1f",
+    "lesson_type": "LEARNING",
+    "topics": [
+      {
+        "topic_type": "LECTURE",
+        "topic_id": "67af240aa558632741a46919",
+        "skippable": false,
+        "xp": 5,
+        "_id": "67b186ecc92ce033fc545797"
+      },
+      {
+        "topic_type": "VIDEO_TO_TEXT",
+        "topic_id": "67af51f9120d12e3df1950e6",
+        "skippable": false,
+        "xp": 5,
+        "_id": "67b18743c92ce033fc5457a0"
+      }
+    ],
+    "__v": 2
+  },
+  {
+    "_id": "67b176181baf452f4e87f64c",
+    "total_xp": 0,
+    "group_id": "67b0b3748087d324db77af1f",
+    "lesson_type": "EXERCISE",
+    "topics": [],
+    "__v": 0
+  }
+]
+
 export const defaultVideos = [
     {
       "_id": "67af23f8a558632741a46916",

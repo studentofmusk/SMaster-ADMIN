@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 // Icons
 import plus from "../images/utils/plus.png";
 import trash from "../images/utils/trash.png";
-import { Card } from "../components/Tools";
+import { Card, GroupCard } from "../components/Tools";
 import { defaultGroups } from "./default";
 
 export interface IGroup{
@@ -18,6 +18,11 @@ export interface IGroup{
 
 export default function Groups({setPath}:{setPath:(path: string)=>any}) {
   const [groups, setGroups] = useState<IGroup[]>(defaultGroups)
+
+  const handleClick = ()=>{
+
+  }
+
   useEffect(()=>{
     setPath("groups")
   }, [])
@@ -27,6 +32,13 @@ export default function Groups({setPath}:{setPath:(path: string)=>any}) {
       <div className="mt-4 flex space-x-4">
         <Card label="create" src={plus} to="/groups/create" />
         <Card label="delete" src={trash} to="/groups/delete" />
+      </div>
+      <div className="mt-5 flex flex-wrap space-x-2 space-y-2">
+        {
+          groups.map((group)=>(
+            <GroupCard title={group.title} handleClick={handleClick} />
+          ))
+        }
       </div>
     </section>
   )
