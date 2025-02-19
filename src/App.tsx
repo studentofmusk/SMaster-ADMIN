@@ -10,6 +10,8 @@ import Lessons from './pages/Lessons'
 import Users from './pages/Users'
 import TopNav from './components/TopNav'
 import Videos from './pages/Videos'
+import VideoCreate from './pages/Videos/VideoCreate'
+import VideoDelete from './pages/Videos/VideoDelete'
 
 
 function App() {
@@ -28,7 +30,11 @@ function App() {
         <Route path='/seasons' element={<Seasons setPath={setPath}/>} />
         <Route path='/groups' element={<Groups setPath={setPath}/>} />
         <Route path='/lessons' element={<Lessons setPath={setPath}/>} />
-        <Route path='/videos' element={<Videos setPath={setPath}/>} />
+        <Route path='/videos'>
+          <Route index element={<Videos setPath={setPath}/>} />
+          <Route path='create' element={<VideoCreate setPath={setPath}/>} />
+          <Route path='delete' element={<VideoDelete setPath={setPath}/>} />
+        </Route>
         <Route path='/users' element={<Users setPath={setPath}/>} />
       </Routes>
       </div>
