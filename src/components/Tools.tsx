@@ -11,7 +11,7 @@ export const Card = ({label, src, to}:{[key:string]:string})=>(
           <img src={src} className="w-10" />
           <div className="uppercase text-xl text-white font-bold">{label}</div>
     </Link>
-  )
+);
 
 export const VideoCard = ({ title, url, audio, action_id, thumbnail,
   }: {
@@ -40,11 +40,11 @@ export const VideoCard = ({ title, url, audio, action_id, thumbnail,
     return (
       <div className="w-60 h-72 bg-[#EB5A3C] rounded-lg p-3 shadow-lg text-white">
         {/* Video or Thumbnail */}
-        <div className="relative w-full h-40 rounded overflow-hidden cursor-pointer">
+        <div className="relative w-full h-32 rounded overflow-hidden cursor-pointer">
           {isPlaying ? (
             <video
               src={url}
-              className="w-full h-full object-cover"
+              className="w-full h-full"
               autoPlay
               onEnded={() => setIsPlaying(false)}
               onClick={() => setIsPlaying(false)}
@@ -71,7 +71,7 @@ export const VideoCard = ({ title, url, audio, action_id, thumbnail,
         </div>
   
         {/* Details */}
-        <div className="mt-3">
+        <div className="mt-8">
             <div className="mx-2 flex justify-between items-center">
                   <h3 className="text-gray-200 ">Title:</h3>
                   <div className="text-sm uppercase">{title}</div>
@@ -97,7 +97,6 @@ export const VideoCard = ({ title, url, audio, action_id, thumbnail,
       </div>
     );
   };
-
 
 export const VideoCardDelete = ({ title, url, audio, action_id, thumbnail, handleDelete
   }: {
@@ -127,7 +126,7 @@ export const VideoCardDelete = ({ title, url, audio, action_id, thumbnail, handl
     return (
       <div className="w-60 h-80 bg-[#EB5A3C] rounded-lg p-3 shadow-lg text-white">
         {/* Video or Thumbnail */}
-        <div className="relative w-full h-40 rounded overflow-hidden cursor-pointer">
+        <div className="relative w-full h-32 rounded overflow-hidden cursor-pointer">
           {isPlaying ? (
             <video
               src={url}
@@ -158,7 +157,7 @@ export const VideoCardDelete = ({ title, url, audio, action_id, thumbnail, handl
         </div>
   
         {/* Details */}
-        <div className="mt-3">
+        <div className="mt-8">
             <div className="mx-2 flex justify-between items-center">
                   <h3 className="text-gray-200 ">Title:</h3>
                   <div className="text-sm uppercase">{title}</div>
@@ -187,5 +186,54 @@ export const VideoCardDelete = ({ title, url, audio, action_id, thumbnail, handl
         <audio ref={audioRef} src={audio} onEnded={()=>setIsAudioPlaying(false)} />
       </div>
     );
-  };
+};
+
+export const LanguageCard = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
+  return (
+    <div onClick={handleClick} className="w-40 h-28 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-3xl uppercase">
+      <div>{title}</div>
+    </div>
+  )
+}
+
+export const LanguageCardDelete = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
+  return (
+    <div className="relative w-40 h-28 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-3xl uppercase">
+      <div>{title}</div>
+      <img src={mini_trash} className="absolute bottom-0 right-0 p-3 w-12 cursor-pointer" onClick={handleClick}/>
+    </div>
+  )
+}
   
+export const SeasonCard = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
+  return (
+    <div onClick={handleClick} className="w-40 h-20 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-xl uppercase">
+      <div>{title}</div>
+    </div>
+  )
+}
+
+export const SeasonCardDelete = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
+  return (
+    <div className="relative w-40 h-20 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-xl uppercase">
+      <div>{title}</div>
+      <img src={mini_trash} className="absolute w-10 bottom-0 right-0 p-3 cursor-pointer" onClick={handleClick}/>
+    </div>
+  )
+}
+export const GroupCard = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
+  return (
+    <div onClick={handleClick} className="w-40 h-20 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-xl uppercase">
+      <div>{title}</div>
+    </div>
+  )
+}
+
+export const GroupCardDelete = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
+  return (
+    <div className="relative w-40 h-20 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-xl uppercase">
+      <div>{title}</div>
+      <img src={mini_trash} className="absolute w-10 bottom-0 right-0 p-3 cursor-pointer" onClick={handleClick}/>
+    </div>
+  )
+}

@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react"
-import { VideoCard } from "../../components/Tools";
-import { IVideo } from "../Videos";
 
 
 export default function VideoCreate({setPath}:{setPath:(path: string)=>any}) {
