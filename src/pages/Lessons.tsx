@@ -3,7 +3,7 @@ import { useEffect } from "react"
 // Icons
 import plus from "../images/utils/plus.png";
 import trash from "../images/utils/trash.png";
-import { Card } from "../components/tools";
+import { Card } from "../components/Tools";
 
 export default function Lessons({setPath}:{setPath:(path: string)=>any}) {
   useEffect(()=>{

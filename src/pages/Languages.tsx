@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Card } from "../components/tools";
+import { Card } from "../components/Tools";
 
 // Icons
 import plus from "../images/utils/plus.png";
