@@ -12,6 +12,10 @@ import TopNav from './components/TopNav'
 import Videos from './pages/Videos'
 import VideoCreate from './pages/Videos/VideoCreate'
 import VideoDelete from './pages/Videos/VideoDelete'
+import LanguageCreate from './pages/Languages/LanguageCreate'
+import LanguageDelete from './pages/Languages/LanguageDelete'
+import SeasonCreate from './pages/Seasons/SeasonCreate'
+import SeasonDelete from './pages/Seasons/SeasonDelete'
 
 
 function App() {
@@ -26,8 +30,18 @@ function App() {
       <TopNav/>
       <Routes>
         <Route path='/' element={<Home setPath={setPath}/>} />
-        <Route path='/languages' element={<Languages setPath={setPath}/>} />
-        <Route path='/seasons' element={<Seasons setPath={setPath}/>} />
+        
+        <Route path='/languages'>
+          <Route index element={<Languages setPath={setPath}/>} />
+          <Route path='create' element={<LanguageCreate setPath={setPath}/>} />
+          <Route path='delete' element={<LanguageDelete setPath={setPath}/>} />
+        </Route>
+        
+        <Route path='/seasons'>
+          <Route index element={<Seasons setPath={setPath}/>} />
+          <Route path='create' element={<SeasonCreate setPath={setPath}/>} />
+          <Route path='delete' element={<SeasonDelete setPath={setPath}/>} />
+        </Route>
         <Route path='/groups' element={<Groups setPath={setPath}/>} />
         <Route path='/lessons' element={<Lessons setPath={setPath}/>} />
         <Route path='/videos'>
