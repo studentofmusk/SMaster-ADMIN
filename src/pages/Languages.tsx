@@ -37,7 +37,7 @@ export default function Languages({setPath}:{setPath:(path: string)=>any}) {
         <Card label="delete" src={trash} to="/languages/delete" />
       </div>
 
-      <div className="mt-5">
+      <div className="mt-5 flex flex-wrap space-x-2 space-y-2">
         {
           languages.map((language)=>(
             <LanguageCard title={language.title} handleClick={handleClick} />

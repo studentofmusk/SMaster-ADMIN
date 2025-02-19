@@ -18,7 +18,7 @@ export default function SeasonDelete({setPath}:{setPath:(path: string)=>any}) {
   
   return (
     <section className="px-10 ">
-      <h2 className="text-[#EB5A3C] uppercase font-bold">Delete Languages</h2>
+      <h2 className="text-[#EB5A3C] uppercase font-bold">Delete Seasons</h2>
 
       <div className="mt-5">
         {
