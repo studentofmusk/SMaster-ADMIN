@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react"
+import { useAPI } from "../../hooks/useAPI";
+import { IVideo } from "../Videos";
+import { create_video } from "../../utils/apis";
 
 
 export default function VideoCreate({setPath}:{setPath:(path: string)=>any}) {
+  const {fetchAPI, loading} = useAPI<IVideo>();
+
   const [title, setTitle] = useState("");
   const [video, setVideo] = useState<File | null>(null);
   const [thumbnail, setThumbnail] = useState<File | null>(null);
@@ -16,9 +21,9 @@ export default function VideoCreate({setPath}:{setPath:(path: string)=>any}) {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    
+
     if (!title || !video || !thumbnail || !audio || !actionId) {
       alert("Please fill in all fields.");
       return;
@@ -29,9 +34,26 @@ export default function VideoCreate({setPath}:{setPath:(path: string)=>any}) {
     formData.append("video", video);
     formData.append("thumbnail", thumbnail);
     formData.append("audio", audio);
-    formData.append("actionId", actionId);
+    formData.append("action_id", actionId);
+    try {
+      const response = await fetchAPI(create_video, "POST", formData)
+      if(response.success){
+        alert("Video uploaded successfully!");
+        // Reset form after successful upload
+        setTitle("");
+        setVideo(null);
+        setThumbnail(null);
+        setAudio(null);
+        setActionId("");
+      }else{
+        alert(response.message);
+        console.log(response.errors);
+        
+      }
+    } catch (error) {
+      alert("Something went wrong!");
+    }
 
-    console.log("Uploading video...", formData);
   };
 
   useEffect(()=>{
@@ -106,10 +128,10 @@ export default function VideoCreate({setPath}:{setPath:(path: string)=>any}) {
         </div>
         <div className="flex flex-col space-y-2">
           <h1 className="uppercase text-[#665C5C] font-bold">Action ID</h1>
-          <input type="number" onChange={(e)=>setActionId(e.target.value)} placeholder="e.g 1" className="border border-[#EB5A3C] rounded-xs w-72 h-10 pl-4 text-[#EB5A3C]"/>
+          <input type="number" value={actionId} onChange={(e)=>setActionId(e.target.value)} placeholder="e.g 1" className="border border-[#EB5A3C] rounded-xs w-72 h-10 pl-4 text-[#EB5A3C]"/>
         </div>
 
-        <button className="text-xl uppercase bg-green-500 text-white px-10 py-1">Create</button>
+        <button disabled={loading} onClick={handleSubmit} className="text-xl uppercase bg-green-500 text-white px-10 py-1">Create</button>
 
       </div>
     </section>

@@ -3,8 +3,9 @@ import { useEffect, useState } from "react"
 // Icons
 import plus from "../images/utils/plus.png";
 import trash from "../images/utils/trash.png";
-import { Card, VideoCard } from "../components/Tools";
-import { defaultVideos } from "./default";
+import { Card, ListDisplay, VideoCard } from "../components/Tools";
+import { useAPI } from "../hooks/useAPI";
+import { get_videos } from "../utils/apis";
 
 export interface IVideo {
   _id: string;
@@ -19,34 +20,44 @@ export interface IVideo {
 }
 
 export default function Videos({setPath}:{setPath:(path: string)=>any}) {
-  const [videos, setVideos] = useState<IVideo[]>(defaultVideos)
+  const {data: videos, loading, error, fetchAPI} = useAPI<IVideo[]>();
 
 
   useEffect(()=>{
-    setPath("videos")
+    setPath("videos");
   }, []);
 
+  useEffect(()=>{
+    fetchAPI(get_videos);
+  }, [])
+
+
+
   return (
-    <section className="px-10 overflow-y-scroll">
+    <section className="px-10 h-[85vh]">
       <h2 className="text-[#EB5A3C] uppercase font-bold">videos</h2>
       <div className="mt-4 flex space-x-4">
         <Card label="create" src={plus} to="/videos/create" />
         <Card label="delete" src={trash} to="/videos/delete" />
       </div>
 
-      <div className="mt-10 ml-4 space-x-4 space-y-4  flex flex-wrap">
-      {
-        videos.map((video)=>(
-          <VideoCard 
-            title={video.title} 
-            url={video.url} 
-            audio={video.audio} 
-            action_id={video.action_id} 
-            thumbnail={video.thumbnail} 
+      <ListDisplay
+        loading={loading}
+        error={error}
+        data={videos}
+        renderItem={(video) => (
+          <VideoCard
+            key={video._id}
+            title={video.title}
+            url={video.url}
+            audio={video.audio}
+            action_id={video.action_id}
+            thumbnail={video.thumbnail}
           />
-        ))
-      }
-      </div>
+        )}
+        emptyMessage="No videos available."
+        className="mt-10 ml-4 gap-4 h-[75%] overflow-y-scroll"
+      />
     </section>
   )
 }
