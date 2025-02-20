@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react"
-import { Card, LanguageCard } from "../components/Tools";
+import { useEffect } from "react"
+import { Card, LanguageCard, ListDisplay } from "../components/Tools";
 
 // Icons
 import plus from "../images/utils/plus.png";
 import trash from "../images/utils/trash.png";
-import { defaultLanguages } from "./default";
+import { useAPI } from "../hooks/useAPI";
+import { get_languages } from "../utils/apis";
 
 export interface ILanguage{
   _id: string;
@@ -17,17 +18,20 @@ export interface ILanguage{
 
 
 export default function Languages({setPath}:{setPath:(path: string)=>any}) {
+  const {data: languages, loading, error, fetchAPI} = useAPI<ILanguage[]>();
 
-  const [languages, setLanguages] = useState<ILanguage[]>(defaultLanguages)
+  useEffect(()=>{
+    fetchAPI(get_languages);
+  }, []);
 
   useEffect(()=>{
     setPath("languages")
   }, []);
 
+
   const handleClick = ()=>{
 
   }
-
   
   return (
     <section className="px-10 ">
@@ -37,14 +41,14 @@ export default function Languages({setPath}:{setPath:(path: string)=>any}) {
         <Card label="delete" src={trash} to="/languages/delete" />
       </div>
 
-      <div className="mt-5 flex flex-wrap space-x-2 space-y-2">
-        {
-          languages.map((language)=>(
-            <LanguageCard title={language.title} handleClick={handleClick} />
-          ))
-        }
-        
-      </div>
+      <ListDisplay
+        loading={loading}
+        error={error}
+        data={languages}
+        renderItem={(language) => <LanguageCard title={language.title} handleClick={handleClick} />}
+        emptyMessage="No languages available."
+        className="mt-5 space-x-2 space-y-2"
+      />
     </section>
   )
 }

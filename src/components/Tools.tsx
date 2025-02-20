@@ -1,10 +1,20 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router";
 
 // Icons
 import mini_play from "../images/utils/mini_play.png";
 import mini_sound from "../images/utils/mini_sound.png";
 import mini_trash from "../images/utils/mini_trash.png";
+
+
+interface ListDisplayProps<T> {
+  loading: boolean;
+  error: string | null;
+  data: T[] | null;
+  renderItem: (item: T) => React.JSX.Element;
+  emptyMessage?: string;
+  className?: string;
+}
 
 export const Card = ({label, src, to}:{[key:string]:string})=>(
     <Link to={to} className="py-7 px-10 flex items-center justify-center space-x-2 bg-[#DF9755] rounded-lg">
@@ -262,3 +272,26 @@ export const LessonCardDelete = ({title, subtitle, handleClick}:{title:string, s
     </div>
   )
 }
+
+export const ListDisplay = <T,>({
+  loading,
+  error,
+  data,
+  renderItem,
+  emptyMessage = "No items available.",
+  className = "",
+}: ListDisplayProps<T>) => {
+  return (
+    <div className={`flex flex-wrap ${className}`}>
+      {loading ? (
+        <div className="text-blue-500">Loading...</div>
+      ) : error ? (
+        <div className="text-red-500 font-semibold">⚠ Error: {error}</div>
+      ) : data && data.length > 0 ? (
+        data.map(renderItem)
+      ) : (
+        <div className="text-gray-500">{emptyMessage}</div>
+      )}
+    </div>
+  );
+};
