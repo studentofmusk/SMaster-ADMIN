@@ -295,3 +295,156 @@ export const ListDisplay = <T,>({
     </div>
   );
 };
+
+export const LectureCard = ({ title, url, audio, thumbnail,
+}: {
+  title: string;
+  url: string;
+  audio: string;
+  thumbnail: string;
+}) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Handle Audio Play/Pause
+  const handleAudioToggle = () => {
+    if (audioRef.current) {
+      if (isAudioPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsAudioPlaying(!isAudioPlaying);
+    }
+  };
+
+  return (
+    <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+      {/* Video or Thumbnail */}
+      <div className="relative w-full h-32 rounded overflow-hidden cursor-pointer">
+        {isPlaying ? (
+          <video
+            src={url}
+            className="w-full h-full object-cover"
+            autoPlay
+            onEnded={() => setIsPlaying(false)}
+            onClick={() => setIsPlaying(false)}
+          />
+        ) : (
+          <img
+            src={thumbnail}
+            alt="Thumbnail"
+            className="w-full h-full object-cover"
+            onClick={() => setIsPlaying(true)}
+          />
+        )}
+
+        {/* Play Button Overlay */}
+        {!isPlaying && (
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-cover"
+            style={{ backgroundImage: `url(${thumbnail})` }}
+            onClick={() => setIsPlaying(true)}
+          >
+            <img src={mini_play} alt="Play Icon" className="w-12 h-12" />
+          </div>
+        )}
+      </div>
+
+      {/* Details */}
+      <div className="mt-8">
+          <div className="mx-2 flex justify-between items-center">
+                <div className="text-sm uppercase font-bold">{title}</div>
+                {/* Audio Play Button */}
+                <button
+                      onClick={handleAudioToggle}
+                      className={`p-2 rounded-full ${isAudioPlaying ? "bg-green-500" : "bg-[#EB5A3C] bg-opacity-50"}`}
+                >
+                      <img src={mini_sound} alt="Play Audio" className="w-6 h-6" />
+                </button>
+          </div>
+      </div>
+
+      {/* Hidden Audio Element */}
+      <audio ref={audioRef} src={audio} onEnded={()=>setIsAudioPlaying(false)} />
+    </div>
+  );
+};
+export const LectureCardDelete = ({ title, url, audio, thumbnail, handleDelete
+}: {
+  title: string;
+  url: string;
+  audio: string;
+  thumbnail: string;
+  handleDelete: ()=>any;
+}) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Handle Audio Play/Pause
+  const handleAudioToggle = () => {
+    if (audioRef.current) {
+      if (isAudioPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsAudioPlaying(!isAudioPlaying);
+    }
+  };
+
+  return (
+    <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+      {/* Video or Thumbnail */}
+      <div className="relative w-full h-32 rounded overflow-hidden cursor-pointer">
+        {isPlaying ? (
+          <video
+            src={url}
+            className="w-full h-full object-cover"
+            autoPlay
+            onEnded={() => setIsPlaying(false)}
+            onClick={() => setIsPlaying(false)}
+          />
+        ) : (
+          <img
+            src={thumbnail}
+            alt="Thumbnail"
+            className="w-full h-full object-cover"
+            onClick={() => setIsPlaying(true)}
+          />
+        )}
+
+        {/* Play Button Overlay */}
+        {!isPlaying && (
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-cover"
+            style={{ backgroundImage: `url(${thumbnail})` }}
+            onClick={() => setIsPlaying(true)}
+          >
+            <img src={mini_play} alt="Play Icon" className="w-12 h-12" />
+          </div>
+        )}
+      </div>
+
+      {/* Details */}
+      <div className="mt-8">
+          <div className="mx-2 flex justify-between items-center">
+                <div className="text-sm uppercase font-bold">{title}</div>
+                {/* Audio Play Button */}
+                <button
+                      onClick={handleAudioToggle}
+                      className={`p-2 rounded-full ${isAudioPlaying ? "bg-green-500" : "bg-[#EB5A3C] bg-opacity-50"}`}
+                >
+                      <img src={mini_sound} alt="Play Audio" className="w-6 h-6" />
+                </button>
+          </div>
+      </div>
+      <button onClick={handleDelete} className="mt-2 w-full rounded-sm text-center bg-[#EB5A3C] text-white uppercase font-bold" >Delete</button>
+
+      {/* Hidden Audio Element */}
+      <audio ref={audioRef} src={audio} onEnded={()=>setIsAudioPlaying(false)} />
+    </div>
+  );
+};
