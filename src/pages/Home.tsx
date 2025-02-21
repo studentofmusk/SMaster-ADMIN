@@ -8,6 +8,11 @@ import groups from "../images/dashboard/Icon-1.png";
 import book from "../images/dashboard/Icon-2.png";
 import people from "../images/dashboard/Icon-3.png";
 import video from "../images/dashboard/Icon-6.png";
+import lecture from "../images/dashboard/Lecture.png";
+import v2text from "../images/dashboard/V2Text.png";
+import t2video from "../images/dashboard/T2Video.png";
+import v2action from "../images/dashboard/V2Action.png";
+import t2action from "../images/dashboard/T2Action.png";
 
 
 interface IBox {
@@ -35,6 +40,11 @@ export default function Home({setPath}:{setPath:(path: string)=>any}) {
         <Box label="Seasons" to="/seasons" src={slides} />
         <Box label="Groups" to="/groups" src={groups} />
         <Box label="Lessons" to="/lessons" src={book} />
+        <Box label="Lectures" to="/lecture" src={lecture} />
+        <Box label="V2Texts" to="/v2text" src={v2text} />
+        <Box label="T2Video" to="/t2video" src={t2video} />
+        <Box label="V2Action" to="/v2action" src={v2action} />
+        <Box label="T2Action" to="/t2action" src={t2action} />
         <Box label="Videos" to="/videos" src={video} />
         <Box label="Users" to="/users" src={people} />
       </div>

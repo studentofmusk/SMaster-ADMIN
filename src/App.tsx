@@ -20,6 +20,14 @@ import GroupCreate from './pages/Groups/GroupCreate'
 import GroupDelete from './pages/Groups/GroupDelete'
 import LessonCreate from './pages/Lessons/LessonCreate'
 import LessonDelete from './pages/Lessons/LessonDelete'
+import Lecture from './pages/Lecture'
+import V2Text from './pages/V2Text'
+import NotFound from './pages/NotFound'
+import T2Video from './pages/T2Video'
+import V2Action from './pages/V2Action'
+import T2Action from './pages/T2Action'
+import LectureDelete from './pages/Lecture/LectureDelete'
+import LectureCreate from './pages/Lecture/LectureCreate'
 
 
 function App() {
@@ -59,12 +67,40 @@ function App() {
           <Route path='delete' element={<LessonDelete setPath={setPath}/>} />
         </Route>
         
+        <Route path='/lecture'>
+          <Route index element={<Lecture setPath={setPath}/>} />
+          <Route path='create' element={<LectureCreate setPath={setPath}/>} />
+          <Route path='delete' element={<LectureDelete setPath={setPath}/>} />
+        </Route>
+        <Route path='/v2text'>
+          <Route index element={<V2Text setPath={setPath}/>} />
+          {/* <Route path='create' element={<VideoCreate setPath={setPath}/>} /> */}
+          {/* <Route path='delete' element={<VideoDelete setPath={setPath}/>} /> */}
+        </Route>
+        <Route path='/t2video'>
+          <Route index element={<T2Video setPath={setPath}/>} />
+          {/* <Route path='create' element={<VideoCreate setPath={setPath}/>} /> */}
+          {/* <Route path='delete' element={<VideoDelete setPath={setPath}/>} /> */}
+        </Route>
+        <Route path='/v2action'>
+          <Route index element={<V2Action setPath={setPath}/>} />
+          {/* <Route path='create' element={<VideoCreate setPath={setPath}/>} /> */}
+          {/* <Route path='delete' element={<VideoDelete setPath={setPath}/>} /> */}
+        </Route>
+        <Route path='/t2action'>
+          <Route index element={<T2Action setPath={setPath}/>} />
+          {/* <Route path='create' element={<VideoCreate setPath={setPath}/>} /> */}
+          {/* <Route path='delete' element={<VideoDelete setPath={setPath}/>} /> */}
+        </Route>
+
         <Route path='/videos'>
           <Route index element={<Videos setPath={setPath}/>} />
           <Route path='create' element={<VideoCreate setPath={setPath}/>} />
           <Route path='delete' element={<VideoDelete setPath={setPath}/>} />
         </Route>
         <Route path='/users' element={<Users setPath={setPath}/>} />
+
+        <Route path='/*' element={<NotFound />} />
       </Routes>
       </div>
 
