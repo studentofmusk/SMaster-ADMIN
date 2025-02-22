@@ -28,6 +28,8 @@ import V2Action from './pages/V2Action'
 import T2Action from './pages/T2Action'
 import LectureDelete from './pages/Lecture/LectureDelete'
 import LectureCreate from './pages/Lecture/LectureCreate'
+import V2TextDelete from './pages/V2Text/V2TextDelete'
+import V2TextCreate from './pages/V2Text/V2TextCreate'
 
 
 function App() {
@@ -74,8 +76,8 @@ function App() {
         </Route>
         <Route path='/v2text'>
           <Route index element={<V2Text setPath={setPath}/>} />
-          {/* <Route path='create' element={<VideoCreate setPath={setPath}/>} /> */}
-          {/* <Route path='delete' element={<VideoDelete setPath={setPath}/>} /> */}
+          <Route path='create' element={<V2TextCreate setPath={setPath}/>} />
+          <Route path='delete' element={<V2TextDelete setPath={setPath}/>} />
         </Route>
         <Route path='/t2video'>
           <Route index element={<T2Video setPath={setPath}/>} />
