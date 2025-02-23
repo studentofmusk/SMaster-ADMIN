@@ -1,12 +1,8 @@
 import { useEffect } from "react"
-
-// Icons
-import plus from "../images/utils/plus.png";
-import trash from "../images/utils/trash.png";
-import { Card, ListDisplay, T2VideoCard} from "../components/Tools";
-import { useAPI } from "../hooks/useAPI";
-import { get_t2video, get_videos } from "../utils/apis";
-import { IVideo } from "./Videos";
+import { Card, ListDisplay, T2VideoCard, T2VideoCardDelete} from "../../components/Tools";
+import { useAPI } from "../../hooks/useAPI";
+import { delete_t2video, get_t2video, get_videos } from "../../utils/apis";
+import { IVideo } from "../Videos";
 
 export interface IT2Video {
   _id: string;
@@ -17,13 +13,26 @@ export interface IT2Video {
   __v: number;
 }
 
-export default function T2Video({setPath}:{setPath:(path: string)=>any}) {
+export default function T2VideoDelete({setPath}:{setPath:(path: string)=>any}) {
   const {data:t2videos, fetchAPI:getT2Video, loading, error} = useAPI<IT2Video[]>();
   const {data:videos, fetchAPI:getVideos} = useAPI<IVideo []>();
-
+  const { fetchAPI:deleteT2Video} = useAPI<IT2Video []>();
   
-  const handleClick = ()=>{
+  const handleDelete = async(id: string, title:string)=>{
+    try {
+      const response = await deleteT2Video(delete_t2video, "POST", {
+        t2video_id:id
+      });
 
+      if(response.success){
+        alert(`T2Video [${title}] is deleted!`);
+        await getT2Video(get_t2video);
+      }else{
+        alert(response.message);
+      }
+    } catch (error) {
+      alert("Something went wrong!");
+    }
   }
 
   useEffect(()=>{
@@ -38,11 +47,7 @@ export default function T2Video({setPath}:{setPath:(path: string)=>any}) {
 
   return (
     <section className="px-10 h-[85vh]">
-      <h2 className="text-[#EB5A3C] uppercase font-bold">T2Video</h2>
-      <div className="mt-4 flex space-x-4">
-        <Card label="create" src={plus} to="/t2video/create" />
-        <Card label="delete" src={trash} to="/t2video/delete" />
-      </div>
+      <h2 className="text-[#EB5A3C] uppercase font-bold">Delete T2Video</h2>
 
       <ListDisplay
           data={t2videos}
@@ -54,9 +59,10 @@ export default function T2Video({setPath}:{setPath:(path: string)=>any}) {
               const VIDEO_3 = videos?.find((video)=>video._id === t2video.options[2]);
               const VIDEO_4 = videos?.find((video)=>video._id === t2video.options[3]);
               return (
-                  <T2VideoCard  
+                  <T2VideoCardDelete
                     title={t2video.title}
                     options={[VIDEO_1, VIDEO_2, VIDEO_3, VIDEO_4]}
+                    handleDelete={()=>handleDelete(t2video._id, t2video.title)}
                     />
               );
           }}
