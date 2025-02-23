@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
 import { useAPI } from "../../hooks/useAPI";
-import { create_lecture, create_v2action, get_videos } from "../../utils/apis";
+import { create_v2action, get_videos } from "../../utils/apis";
 import { IVideo } from "../Videos";
-import { ILecture } from "../Lecture";
 import { IV2Action } from "../V2Action";
 
 

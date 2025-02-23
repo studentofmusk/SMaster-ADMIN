@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-import { ListDisplay, T2ActionCard, T2ActionCardDelete} from "../../components/Tools";
+import { ListDisplay, T2ActionCardDelete} from "../../components/Tools";
 import { IVideo } from "../Videos";
 import { useAPI } from "../../hooks/useAPI";
 import { delete_t2action, get_t2action, get_v2action, get_videos } from "../../utils/apis";
