@@ -36,6 +36,7 @@ import V2ActionDelete from './pages/V2Action/V2ActionDelete'
 import V2ActionCreate from './pages/V2Action/V2ActionCreate'
 import T2ActionCreate from './pages/T2Action/T2ActionCreate'
 import T2ActionDelete from './pages/T2Action/T2ActionDelete'
+import LessonView from './pages/Lessons/LessonView'
 
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
           <Route index element={<Lessons setPath={setPath}/>} />
           <Route path='create' element={<LessonCreate setPath={setPath}/>} />
           <Route path='delete' element={<LessonDelete setPath={setPath}/>} />
+          <Route path='view' element={<LessonView setPath={setPath}/>} />
         </Route>
         
         <Route path='/lecture'>

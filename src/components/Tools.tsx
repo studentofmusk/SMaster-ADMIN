@@ -6,6 +6,12 @@ import mini_play from "../images/utils/mini_play.png";
 import mini_sound from "../images/utils/mini_sound.png";
 import mini_trash from "../images/utils/mini_trash.png";
 import { IVideo } from "../pages/Videos";
+import { ILecture } from "../pages/Lecture";
+import { IT2Video } from "../pages/T2Video";
+import { IV2Text } from "../pages/V2Text";
+import { IV2Action } from "../pages/V2Action";
+import { IT2Action } from "../pages/T2Action";
+import { ILesson, TopicTypes } from "../pages/Lessons";
 
 
 interface ListDisplayProps<T> {
@@ -242,26 +248,50 @@ export const GroupCardDelete = ({title, handleClick}:{title:string, handleClick:
     </div>
   )
 }
-export const LessonCard = ({title, subtitle, handleClick}:{title:string, subtitle:string,handleClick:()=>any})=>{
+export const LessonCard = ({title, group, language, season, handleClick}:{
+  title:string;
+  group:string | undefined;
+  language: string | undefined;
+  season: string | undefined;
+  handleClick:()=>any;
+
+})=>{
   return (
-    <div onClick={handleClick} className="cursor-pointer w-80 h-32 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-lg uppercase">
+    <div onClick={handleClick} className="relative w-60 h-32 cursor-pointer flex justify-center items-center rounded-sm border border-gray-300 shadow-lg bg-[#EB5A3C] text-white text-lg uppercase">
         
-      <div>
-        <div>{title}</div>
-        <div className="text-sm text-orange-100" >{subtitle}</div>
+      <div className="flex flex-col justify-center items-center w-full h-full">
+        <div className="text-center">{title}</div>
+        <div className="text-center text-sm text-orange-100" >{group??"No Group"}</div>
       </div>
-    </div>
+
+      <div className="absolute bottom-0 left-0 bg-white text-[#EB5A3C] text-xs rounded-tr-xs font-bold uppercase p-1" >{language??"No Language"}</div>
+      <div className="absolute bottom-0 right-0 bg-white text-[#EB5A3C] text-xs rounded-tl-xs font-bold uppercase p-1" >{season??"No Season"}</div>
+      
+      </div>
   )
 }
-export const LessonCardDelete = ({title, subtitle, handleClick}:{title:string, subtitle:string,handleClick:()=>any})=>{
+
+export const LessonCardDelete = ({title, group, language, season, handleDelete}:{
+  title:string;
+  group:string | undefined;
+  language: string | undefined;
+  season: string | undefined;
+  handleDelete:()=>any;
+
+})=>{
   return (
-    <div className="relative w-80 h-32 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-xl uppercase">
-      <div>
-        <div>{title}</div>
-        <div className="text-sm text-orange-100" >{subtitle}</div>
+    <div className="relative w-60 h-32 cursor-pointer flex justify-center items-center rounded-sm border border-gray-300 shadow-lg bg-[#EB5A3C] text-white text-lg uppercase">
+        
+      <div className="flex flex-col justify-center items-center w-full h-full">
+        <div className="text-center">{title}</div>
+        <div className="text-center text-sm text-orange-100" >{group??"No Group"}</div>
       </div>
-      <img src={mini_trash} className="absolute w-10 bottom-0 right-0 p-3 cursor-pointer" onClick={handleClick}/>
-    </div>
+
+      <div className="absolute bottom-0 left-0 bg-white text-[#EB5A3C] text-xs rounded-tr-xs font-bold uppercase p-1" >{language??"No Language"}</div>
+      <div className="absolute bottom-0 right-0 bg-white text-[#EB5A3C] text-xs rounded-tl-xs font-bold uppercase p-1" >{season??"No Season"}</div>
+      <img src={mini_trash} className="absolute w-12 top-0 right-0 p-3 cursor-pointer" onClick={handleDelete}/>
+
+      </div>
   )
 }
 export const ListDisplay = <T,>({
