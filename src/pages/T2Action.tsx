@@ -47,12 +47,12 @@ export default function T2Action({setPath}:{setPath:(path: string)=>any}) {
         data={t2actions}
         error={error}
         loading={loading}
-        renderItem={(v2action)=>{
-            const VIDEO = videos?.find((video)=>video._id === v2action.video);
+        renderItem={(t2action)=>{
+            const VIDEO = videos?.find((video)=>video._id === t2action.video);
             return (
                 <>{VIDEO
                     ?<T2ActionCard  
-                        title={v2action.title}
+                        title={t2action.title}
                         action_id={VIDEO.action_id}
                         />
                     :<></>
@@ -61,7 +61,7 @@ export default function T2Action({setPath}:{setPath:(path: string)=>any}) {
                 </>
             )
         }}
-        emptyMessage="No T2Video Not Found!" 
+        emptyMessage="No T2Action Not Found!" 
         className="mt-10 ml-4 gap-4 h-[75%] overflow-y-scroll items-start"    
     />
     </section>
