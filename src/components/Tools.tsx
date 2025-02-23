@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import mini_play from "../images/utils/mini_play.png";
 import mini_sound from "../images/utils/mini_sound.png";
 import mini_trash from "../images/utils/mini_trash.png";
+import { IVideo } from "../pages/Videos";
 
 
 interface ListDisplayProps<T> {
@@ -58,6 +59,7 @@ export const VideoCard = ({ title, url, audio, action_id, thumbnail,
               autoPlay
               onEnded={() => setIsPlaying(false)}
               onClick={() => setIsPlaying(false)}
+              muted={true}
             />
           ) : (
             <img
@@ -326,6 +328,7 @@ export const LectureCard = ({ title, url, audio, thumbnail,
         {isPlaying ? (
           <video
             src={url}
+            muted={true}
             className="w-full h-full object-cover"
             autoPlay
             onEnded={() => setIsPlaying(false)}
@@ -402,6 +405,7 @@ export const LectureCardDelete = ({ title, url, audio, thumbnail, handleDelete
         {isPlaying ? (
           <video
             src={url}
+            muted={true}
             className="w-full h-full object-cover"
             autoPlay
             onEnded={() => setIsPlaying(false)}
@@ -448,6 +452,7 @@ export const LectureCardDelete = ({ title, url, audio, thumbnail, handleDelete
     </div>
   );
 };
+
 export const V2TextCard = ({ title, url, audio, thumbnail,options
 }: {
   title: string;
@@ -473,12 +478,13 @@ export const V2TextCard = ({ title, url, audio, thumbnail,options
   };
 
   return (
-    <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+    <div className="w-80 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
       {/* Video or Thumbnail */}
-      <div className="relative w-full h-32 rounded overflow-hidden cursor-pointer">
+      <div className="relative w-full rounded overflow-hidden cursor-pointer">
         {isPlaying ? (
           <video
             src={url}
+            muted={true}
             className="w-full h-full object-cover"
             autoPlay
             onEnded={() => setIsPlaying(false)}
@@ -565,6 +571,7 @@ export const V2TextCardDelete = ({ title, url, audio, thumbnail, options, handle
         {isPlaying ? (
           <video
             src={url}
+            muted={true}
             className="w-full h-full object-cover"
             autoPlay
             onEnded={() => setIsPlaying(false)}
@@ -620,5 +627,311 @@ export const V2TextCardDelete = ({ title, url, audio, thumbnail, options, handle
       {/* Hidden Audio Element */}
       <audio ref={audioRef} src={audio} onEnded={()=>setIsAudioPlaying(false)} />
     </div>
+  );
+};
+
+
+export const T2VideoCard = ({ title, options
+}: {
+  title: string;
+  options: [IVideo | undefined, IVideo | undefined, IVideo | undefined, IVideo | undefined];
+}) => {
+  
+
+  return (
+    <div className="w-96 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+      
+
+      {/* title */}
+      <div className="mt-2">
+          <div className="mx-2 flex justify-between items-center">
+                <div className="text-sm uppercase font-bold">{title}</div>
+          </div>
+      </div>
+      {/* Options */}
+      {options && options.length > 0
+      ?<div className="mt-4 flex flex-wrap justify-start">
+          {options.map((video)=>{
+              if(!video) return <div>No video</div>
+              const [isPlaying, setIsPlaying] = useState(false);
+              
+              return (
+                <div className="relative w-40 cursor-pointer m-2">
+                {isPlaying ? (
+                  <video
+                    src={video.url}
+                    muted={true}
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    onEnded={() => setIsPlaying(false)}
+                    onClick={() => setIsPlaying(false)}
+                  />
+                ) : (
+                  <img
+                    src={video.thumbnail}
+                    alt="Thumbnail"
+                    className="w-40 object-cover"
+                    onClick={() => setIsPlaying(true)}
+                  />
+                )}
+        
+                {/* Play Button Overlay */}
+                {!isPlaying && (
+                  <div
+                    className="absolute inset-0 flex items-center justify-center bg-cover"
+                    style={{ backgroundImage: `url(${video.thumbnail})` }}
+                    onClick={() => setIsPlaying(true)}
+                  >
+                    <img src={mini_play} alt="Play Icon" className="w-12 h-12" />
+                  </div>
+                )}
+              </div>
+              )
+          })}
+        </div>
+      :<center className="mt-4">No options</center>}
+      
+
+      </div>
+  );
+};
+
+export const T2VideoCardDelete = ({ title, options, handleDelete
+}: {
+  title: string;
+  options: [IVideo | undefined, IVideo | undefined, IVideo | undefined, IVideo | undefined];
+  handleDelete: ()=>any
+}) => {
+  
+
+  return (
+    <div className="w-96 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+      
+
+      {/* title */}
+      <div className="mt-2">
+          <div className="mx-2 flex justify-between items-center">
+                <div className="text-sm uppercase font-bold">{title}</div>
+                <img src={mini_trash} onClick={handleDelete} className="invert-100 w-6" />
+          </div>
+      </div>
+      {/* Options */}
+      {options && options.length > 0
+      ?<div className="mt-4 flex flex-wrap justify-start">
+          {options.map((video)=>{
+              if(!video) return <div>No video</div>
+              const [isPlaying, setIsPlaying] = useState(false);
+              
+              return (
+                <div className="relative w-40 cursor-pointer m-2">
+                {isPlaying ? (
+                  <video
+                    src={video.url}
+                    muted={true}
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    onEnded={() => setIsPlaying(false)}
+                    onClick={() => setIsPlaying(false)}
+                  />
+                ) : (
+                  <img
+                    src={video.thumbnail}
+                    alt="Thumbnail"
+                    className="w-40 object-cover"
+                    onClick={() => setIsPlaying(true)}
+                  />
+                )}
+        
+                {/* Play Button Overlay */}
+                {!isPlaying && (
+                  <div
+                    className="absolute inset-0 flex items-center justify-center bg-cover"
+                    style={{ backgroundImage: `url(${video.thumbnail})` }}
+                    onClick={() => setIsPlaying(true)}
+                  >
+                    <img src={mini_play} alt="Play Icon" className="w-12 h-12" />
+                  </div>
+                )}
+              </div>
+              )
+          })}
+        </div>
+      :<center className="mt-4">No options</center>}
+      
+
+      </div>
+  );
+};
+
+
+export const V2ActionCard = ({ title, url, thumbnail, action_id
+}: {
+  title: string;
+  url: string;
+  thumbnail: string;
+  action_id: number;
+}) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  return (
+    <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+      {/* Video or Thumbnail */}
+      <div className="relative w-full h-32 rounded overflow-hidden cursor-pointer">
+        {isPlaying ? (
+          <video
+            src={url}
+            muted={true}
+            className="w-full h-full object-cover"
+            autoPlay
+            onEnded={() => setIsPlaying(false)}
+            onClick={() => setIsPlaying(false)}
+          />
+        ) : (
+          <img
+            src={thumbnail}
+            alt="Thumbnail"
+            className="w-full h-full object-cover"
+            onClick={() => setIsPlaying(true)}
+          />
+        )}
+
+        {/* Play Button Overlay */}
+        {!isPlaying && (
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-cover"
+            style={{ backgroundImage: `url(${thumbnail})` }}
+            onClick={() => setIsPlaying(true)}
+          >
+            <img src={mini_play} alt="Play Icon" className="w-12 h-12" />
+          </div>
+        )}
+      </div>
+
+      {/* Details */}
+      <div className="mt-8">
+          <div className="mx-2 flex justify-between items-center">
+                <div className="text-sm uppercase font-bold">{title}</div>
+          </div>
+          <div className="py-2 mt-2 mx-2 flex flex-col justify-center border border-[#EB5A3C] shadow items-center ">
+            <div className="uppercase text-xs font-bold text-[#EB5A3C]" >Action id</div>
+            <div className="" >{action_id}</div>
+          </div>
+      </div>
+
+      
+    </div>
+  );
+};
+export const V2ActionCardDelete = ({ title, url, thumbnail, action_id, handleDelete
+}: {
+  title: string;
+  url: string;
+  thumbnail: string;
+  action_id: number;
+  handleDelete:()=>any;
+}) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  return (
+    <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+      {/* Video or Thumbnail */}
+      <div className="relative w-full h-32 rounded overflow-hidden cursor-pointer">
+        {isPlaying ? (
+          <video
+            src={url}
+            muted={true}
+            className="w-full h-full object-cover"
+            autoPlay
+            onEnded={() => setIsPlaying(false)}
+            onClick={() => setIsPlaying(false)}
+          />
+        ) : (
+          <img
+            src={thumbnail}
+            alt="Thumbnail"
+            className="w-full h-full object-cover"
+            onClick={() => setIsPlaying(true)}
+          />
+        )}
+
+        {/* Play Button Overlay */}
+        {!isPlaying && (
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-cover"
+            style={{ backgroundImage: `url(${thumbnail})` }}
+            onClick={() => setIsPlaying(true)}
+          >
+            <img src={mini_play} alt="Play Icon" className="w-12 h-12" />
+          </div>
+        )}
+      </div>
+
+      {/* Details */}
+      <div className="mt-8">
+          <div className="mx-2 flex justify-between items-center">
+                <div className="text-sm uppercase font-bold">{title}</div>
+          </div>
+          <div className="py-2 mt-2 mx-2 flex flex-col justify-center border border-[#EB5A3C] shadow items-center ">
+            <div className="uppercase text-xs font-bold text-[#EB5A3C]" >Action id</div>
+            <div className="" >{action_id}</div>
+          </div>
+      </div>
+
+      <div onClick={handleDelete} className="mt-2 uppercase font-bold text-white bg-[#EB5A3C] p-2 text-center" >Delete</div>
+      </div>
+
+  );
+};
+
+export const T2ActionCard = ({ title, action_id
+}: {
+  title: string;
+  action_id: number;
+}) => {
+
+  return (
+    <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+
+      {/* Details */}
+      <div className="mt-4">
+          <div className="mx-2 flex justify-between items-center">
+                <div className="text-sm uppercase font-bold">{title}</div>
+          </div>
+          <div className="py-2 mt-2 mx-2 flex flex-col justify-center border border-[#EB5A3C] shadow items-center ">
+            <div className="uppercase text-xs font-bold text-[#EB5A3C]" >Action id</div>
+            <div className="" >{action_id}</div>
+          </div>
+      </div>
+
+      
+    </div>
+  );
+};
+export const T2ActionCardDelete = ({ title, action_id, handleDelete
+}: {
+  title: string;
+  action_id: number;
+  handleDelete:()=>any;
+}) => {
+
+  return (
+    <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+
+      {/* Details */}
+      <div className="mt-4">
+          <div className="mx-2 flex justify-between items-center">
+                <div className="text-sm uppercase font-bold">{title}</div>
+          </div>
+          <div className="py-2 mt-2 mx-2 flex flex-col justify-center border border-[#EB5A3C] shadow items-center ">
+            <div className="uppercase text-xs font-bold text-[#EB5A3C]" >Action id</div>
+            <div className="" >{action_id}</div>
+          </div>
+      </div>
+
+      <div onClick={handleDelete} className="mt-2 uppercase font-bold text-white bg-[#EB5A3C] p-2 text-center" >Delete</div>
+      </div>
+
   );
 };

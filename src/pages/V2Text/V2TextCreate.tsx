@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useAPI } from "../../hooks/useAPI";
-import { create_lecture, create_v2text, get_videos } from "../../utils/apis";
+import { create_v2text, get_videos } from "../../utils/apis";
 import { IVideo } from "../Videos";
 import { IV2Text } from "../V2Text";
 
@@ -39,6 +39,11 @@ export default function V2TextCreate({setPath}:{setPath:(path: string)=>any}) {
         })
         if(response.success){
             alert("New Lecture created successfully!");
+            setTitle("");
+            setOptions(["", "", "", ""])
+            setVideoId("");
+            setVideo(undefined);
+            
         }else{
             alert(response.message);
         }

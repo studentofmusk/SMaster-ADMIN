@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import {ListDisplay, VideoCardDelete } from "../../components/Tools";
 import { IVideo } from "../Videos";
 import { useAPI } from "../../hooks/useAPI";
@@ -10,7 +10,7 @@ export default function VideoDelete({setPath}:{setPath:(path: string)=>any}) {
   const {fetchAPI: deleteVideoAPI} = useAPI<IVideo>();
   
   useEffect(()=>{
-    fetchAPI(get_videos)
+    fetchAPI(get_videos);
   }, []);
 
   const handleDelete = async(id:string)=>{
@@ -21,7 +21,7 @@ export default function VideoDelete({setPath}:{setPath:(path: string)=>any}) {
     } catch (error) {
       alert("Something went wrong!");
     }finally{
-      fetchAPI(get_videos)
+      fetchAPI(get_videos);
     }
   }
 
@@ -31,7 +31,7 @@ export default function VideoDelete({setPath}:{setPath:(path: string)=>any}) {
   }, []);
 
   return (
-    <section className="h-[85vh] px-10 ">
+    <section className="h-[95vh] px-10 ">
       <h2 className="text-[#EB5A3C] uppercase font-bold">video delete</h2>
 
       <ListDisplay

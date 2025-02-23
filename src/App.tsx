@@ -30,6 +30,12 @@ import LectureDelete from './pages/Lecture/LectureDelete'
 import LectureCreate from './pages/Lecture/LectureCreate'
 import V2TextDelete from './pages/V2Text/V2TextDelete'
 import V2TextCreate from './pages/V2Text/V2TextCreate'
+import T2VideoDelete from './pages/T2Video/T2VideoDelete'
+import T2VideoCreate from './pages/T2Video/T2VideoCreate'
+import V2ActionDelete from './pages/V2Action/V2ActionDelete'
+import V2ActionCreate from './pages/V2Action/V2ActionCreate'
+import T2ActionCreate from './pages/T2Action/T2ActionCreate'
+import T2ActionDelete from './pages/T2Action/T2ActionDelete'
 
 
 function App() {
@@ -81,18 +87,18 @@ function App() {
         </Route>
         <Route path='/t2video'>
           <Route index element={<T2Video setPath={setPath}/>} />
-          {/* <Route path='create' element={<VideoCreate setPath={setPath}/>} /> */}
-          {/* <Route path='delete' element={<VideoDelete setPath={setPath}/>} /> */}
+          <Route path='create' element={<T2VideoCreate setPath={setPath}/>} />
+          <Route path='delete' element={<T2VideoDelete setPath={setPath}/>} />
         </Route>
         <Route path='/v2action'>
           <Route index element={<V2Action setPath={setPath}/>} />
-          {/* <Route path='create' element={<VideoCreate setPath={setPath}/>} /> */}
-          {/* <Route path='delete' element={<VideoDelete setPath={setPath}/>} /> */}
+          <Route path='create' element={<V2ActionCreate setPath={setPath}/>} />
+          <Route path='delete' element={<V2ActionDelete setPath={setPath}/>} />
         </Route>
         <Route path='/t2action'>
           <Route index element={<T2Action setPath={setPath}/>} />
-          {/* <Route path='create' element={<VideoCreate setPath={setPath}/>} /> */}
-          {/* <Route path='delete' element={<VideoDelete setPath={setPath}/>} /> */}
+          <Route path='create' element={<T2ActionCreate setPath={setPath}/>} />
+          <Route path='delete' element={<T2ActionDelete setPath={setPath}/>} />
         </Route>
 
         <Route path='/videos'>

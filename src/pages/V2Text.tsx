@@ -65,7 +65,7 @@ export default function V2Text({setPath}:{setPath:(path: string)=>any}) {
                           </>
                       )
                   }}
-                  emptyMessage="No Lecture Found!" 
+                  emptyMessage="No V2Text Found!" 
                   className="mt-10 ml-4 gap-4 h-[75%] overflow-y-scroll items-start"    
               />
 
