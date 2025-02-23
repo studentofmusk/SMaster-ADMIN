@@ -23,7 +23,6 @@ export const Card = ({label, src, to}:{[key:string]:string})=>(
           <div className="uppercase text-xl text-white font-bold">{label}</div>
     </Link>
 );
-
 export const VideoCard = ({ title, url, audio, action_id, thumbnail,
   }: {
     title: string;
@@ -108,8 +107,7 @@ export const VideoCard = ({ title, url, audio, action_id, thumbnail,
         <audio ref={audioRef} src={audio} onEnded={()=>setIsAudioPlaying(false)} />
       </div>
     );
-  };
-
+};
 export const VideoCardDelete = ({ title, url, audio, action_id, thumbnail, handleDelete
   }: {
     title: string;
@@ -199,7 +197,6 @@ export const VideoCardDelete = ({ title, url, audio, action_id, thumbnail, handl
       </div>
     );
 };
-
 export const LanguageCard = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
   return (
     <div onClick={handleClick} className="cursor-pointer w-40 h-28 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-3xl uppercase">
@@ -207,7 +204,6 @@ export const LanguageCard = ({title, handleClick}:{title:string, handleClick:()=
     </div>
   )
 }
-
 export const LanguageCardDelete = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
   return (
     <div className="relative w-40 h-28 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-3xl uppercase">
@@ -215,8 +211,7 @@ export const LanguageCardDelete = ({title, handleClick}:{title:string, handleCli
       <img src={mini_trash} className="absolute bottom-0 right-0 p-3 w-12 cursor-pointer" onClick={handleClick}/>
     </div>
   )
-}
-  
+} 
 export const SeasonCard = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
   return (
     <div onClick={handleClick} className="cursor-pointer w-40 h-20 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-xl uppercase">
@@ -224,7 +219,6 @@ export const SeasonCard = ({title, handleClick}:{title:string, handleClick:()=>a
     </div>
   )
 }
-
 export const SeasonCardDelete = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
   return (
     <div className="relative w-40 h-20 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-xl uppercase">
@@ -233,7 +227,6 @@ export const SeasonCardDelete = ({title, handleClick}:{title:string, handleClick
     </div>
   )
 }
-
 export const GroupCard = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
   return (
     <div onClick={handleClick} className="cursor-pointer w-80 h-20 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-xl uppercase">
@@ -241,7 +234,6 @@ export const GroupCard = ({title, handleClick}:{title:string, handleClick:()=>an
     </div>
   )
 }
-
 export const GroupCardDelete = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
   return (
     <div className="relative w-80 h-20 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-xl uppercase">
@@ -250,7 +242,6 @@ export const GroupCardDelete = ({title, handleClick}:{title:string, handleClick:
     </div>
   )
 }
-
 export const LessonCard = ({title, subtitle, handleClick}:{title:string, subtitle:string,handleClick:()=>any})=>{
   return (
     <div onClick={handleClick} className="cursor-pointer w-80 h-32 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-lg uppercase">
@@ -262,7 +253,6 @@ export const LessonCard = ({title, subtitle, handleClick}:{title:string, subtitl
     </div>
   )
 }
-
 export const LessonCardDelete = ({title, subtitle, handleClick}:{title:string, subtitle:string,handleClick:()=>any})=>{
   return (
     <div className="relative w-80 h-32 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-xl uppercase">
@@ -274,7 +264,6 @@ export const LessonCardDelete = ({title, subtitle, handleClick}:{title:string, s
     </div>
   )
 }
-
 export const ListDisplay = <T,>({
   loading,
   error,
@@ -297,7 +286,6 @@ export const ListDisplay = <T,>({
     </div>
   );
 };
-
 export const LectureCard = ({ title, url, audio, thumbnail,
 }: {
   title: string;
@@ -452,7 +440,6 @@ export const LectureCardDelete = ({ title, url, audio, thumbnail, handleDelete
     </div>
   );
 };
-
 export const V2TextCard = ({ title, url, audio, thumbnail,options
 }: {
   title: string;
@@ -629,8 +616,6 @@ export const V2TextCardDelete = ({ title, url, audio, thumbnail, options, handle
     </div>
   );
 };
-
-
 export const T2VideoCard = ({ title, options
 }: {
   title: string;
@@ -695,7 +680,6 @@ export const T2VideoCard = ({ title, options
       </div>
   );
 };
-
 export const T2VideoCardDelete = ({ title, options, handleDelete
 }: {
   title: string;
@@ -762,8 +746,6 @@ export const T2VideoCardDelete = ({ title, options, handleDelete
       </div>
   );
 };
-
-
 export const V2ActionCard = ({ title, url, thumbnail, action_id
 }: {
   title: string;
@@ -772,7 +754,6 @@ export const V2ActionCard = ({ title, url, thumbnail, action_id
   action_id: number;
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   return (
     <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
@@ -832,7 +813,6 @@ export const V2ActionCardDelete = ({ title, url, thumbnail, action_id, handleDel
   handleDelete:()=>any;
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   return (
     <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
@@ -884,7 +864,6 @@ export const V2ActionCardDelete = ({ title, url, thumbnail, action_id, handleDel
 
   );
 };
-
 export const T2ActionCard = ({ title, action_id
 }: {
   title: string;

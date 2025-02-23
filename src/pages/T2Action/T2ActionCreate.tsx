@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useAPI } from "../../hooks/useAPI";
-import { create_t2action, create_v2action, get_videos } from "../../utils/apis";
+import { create_t2action, get_videos } from "../../utils/apis";
 import { IVideo } from "../Videos";
 import { IT2Action } from "../T2Action";
 
