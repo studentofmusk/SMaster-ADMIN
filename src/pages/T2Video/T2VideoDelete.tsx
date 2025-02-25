@@ -1,17 +1,10 @@
 import { useEffect } from "react"
-import { Card, ListDisplay, T2VideoCard, T2VideoCardDelete} from "../../components/Tools";
+import { ListDisplay, T2VideoCardDelete} from "../../components/Tools";
 import { useAPI } from "../../hooks/useAPI";
 import { delete_t2video, get_t2video, get_videos } from "../../utils/apis";
 import { IVideo } from "../Videos";
+import { IT2Video } from "../T2Video";
 
-export interface IT2Video {
-  _id: string;
-  title: string;
-  options: string[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
 
 export default function T2VideoDelete({setPath}:{setPath:(path: string)=>any}) {
   const {data:t2videos, fetchAPI:getT2Video, loading, error} = useAPI<IT2Video[]>();

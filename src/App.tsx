@@ -37,6 +37,7 @@ import V2ActionCreate from './pages/V2Action/V2ActionCreate'
 import T2ActionCreate from './pages/T2Action/T2ActionCreate'
 import T2ActionDelete from './pages/T2Action/T2ActionDelete'
 import LessonView from './pages/Lessons/LessonView'
+import LessonUpdate from './pages/Lessons/LessonUpdate'
 
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
     <>
     <div className='flex h-screen'>
       <Navbar path={path} />
-      <div className='w-full'>
+      <div className='w-full h-full flex flex-col'>
       <TopNav/>
       <Routes>
         <Route path='/' element={<Home setPath={setPath}/>} />
@@ -75,6 +76,7 @@ function App() {
           <Route path='create' element={<LessonCreate setPath={setPath}/>} />
           <Route path='delete' element={<LessonDelete setPath={setPath}/>} />
           <Route path='view' element={<LessonView setPath={setPath}/>} />
+          <Route path='update' element={<LessonUpdate setPath={setPath}/>} />
         </Route>
         
         <Route path='/lecture'>
