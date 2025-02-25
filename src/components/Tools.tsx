@@ -340,7 +340,7 @@ export const LectureCard = ({ title, url, audio, thumbnail,
   };
 
   return (
-    <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+    <div className="shrink-0 w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
       {/* Video or Thumbnail */}
       <div className="relative w-full h-32 rounded overflow-hidden cursor-pointer">
         {isPlaying ? (
@@ -495,7 +495,7 @@ export const V2TextCard = ({ title, url, audio, thumbnail,options
   };
 
   return (
-    <div className="w-80 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+    <div className="shrink-0 w-80 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
       {/* Video or Thumbnail */}
       <div className="relative w-full rounded overflow-hidden cursor-pointer">
         {isPlaying ? (
@@ -654,7 +654,7 @@ export const T2VideoCard = ({ title, options
   
 
   return (
-    <div className="w-96 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+    <div className="shrink-0 w-96 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
       
 
       {/* title */}
@@ -786,7 +786,7 @@ export const V2ActionCard = ({ title, url, thumbnail, action_id
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+    <div className="shrink-0 w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
       {/* Video or Thumbnail */}
       <div className="relative w-full h-32 rounded overflow-hidden cursor-pointer">
         {isPlaying ? (

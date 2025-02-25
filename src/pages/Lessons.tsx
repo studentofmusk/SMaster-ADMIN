@@ -4,18 +4,13 @@ import { useNavigate } from "react-router";
 // Icons
 import plus from "../images/utils/plus.png";
 import trash from "../images/utils/trash.png";
+import update from "../images/utils/update.png";
 import { Card, LessonCard, ListDisplay } from "../components/Tools";
 import { IGroup } from "./Groups";
 import { useAPI } from "../hooks/useAPI";
 import { get_groups, get_languages, get_lessons, get_seasons} from "../utils/apis";
 import { ISeason } from "./Seasons";
 import { ILanguage } from "./Languages";
-// import { ILecture } from "./Lecture";
-// import { IV2Text } from "./V2Text";
-// import { IT2Video } from "./T2Video";
-// import { IV2Action } from "./V2Action";
-// import { IT2Action } from "./T2Action";
-// import { IVideo } from "./Videos";
 
 export interface ILesson {
   _id: string;
@@ -95,6 +90,7 @@ export default function Lessons({setPath}:{setPath:(path: string)=>any}) {
       <div className="mt-4 flex space-x-4">
         <Card label="create" src={plus} to="/lessons/create" />
         <Card label="delete" src={trash} to="/lessons/delete" />
+        <Card label="update" src={update} to="/lessons/update" />
       </div>
 
       <ListDisplay

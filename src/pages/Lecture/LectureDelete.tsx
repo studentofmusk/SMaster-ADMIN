@@ -5,15 +5,7 @@ import { LectureCardDelete, ListDisplay} from "../../components/Tools";
 import { useAPI } from "../../hooks/useAPI";
 import { delete_lecture, get_lectures, get_videos } from "../../utils/apis";
 import { IVideo } from "../Videos";
-
-export interface ILecture{
-    _id: string;
-    title: string;
-    video: string;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-}
+import { ILecture } from "../Lecture";
 
 export default function LectureDelete({setPath}:{setPath:(path: string)=>any}) {
     const {data: lectures, fetchAPI, loading, error} = useAPI<ILecture[]>();
