@@ -3,8 +3,12 @@ import { useEffect, useState } from "react"
 // Icons
 import plus from "../images/utils/plus.png";
 import trash from "../images/utils/trash.png";
-import { Card, GroupCard } from "../components/Tools";
+import { Card, GroupCard, ListDisplay } from "../components/Tools";
 import { defaultGroups } from "./default";
+import { useAPI } from "../hooks/useAPI";
+import { get_groups, get_languages, get_seasons } from "../utils/apis";
+import { ILanguage } from "./Languages";
+import { ISeason } from "./Seasons";
 
 export interface IGroup{
   _id: string;
@@ -17,7 +21,13 @@ export interface IGroup{
 }
 
 export default function Groups({setPath}:{setPath:(path: string)=>any}) {
-  const [groups, setGroups] = useState<IGroup[]>(defaultGroups)
+  const {data: groups, fetchAPI: getGroups, loading, error} = useAPI<IGroup[]>();
+  const {data: languages, fetchAPI: getLanguages} = useAPI<ILanguage[]>();
+  const {data: seasons, fetchAPI: getSeasons} = useAPI<ISeason[]>();
+
+  // Maps
+  const [languageMap, setLanguageMap] = useState<Map<string, ILanguage>>(new Map);
+  const [seasonMap, setSeasonMap] = useState<Map<string, ISeason>>(new Map);
 
   const handleClick = ()=>{
 
@@ -26,6 +36,23 @@ export default function Groups({setPath}:{setPath:(path: string)=>any}) {
   useEffect(()=>{
     setPath("groups")
   }, [])
+
+  useEffect(()=>{
+    setLanguageMap(new Map(languages?.map((language)=>[language._id, language])));
+  }, [languages])
+
+  useEffect(()=>{
+    setSeasonMap(new Map(seasons?.map((season)=>[season._id, season])));
+  }, [seasons])
+
+
+  useEffect(()=>{
+    getLanguages(get_languages);
+    getSeasons(get_seasons);
+    getGroups(get_groups);
+  }, [])
+
+
   return (
     <section className="px-10 ">
       <h2 className="text-[#EB5A3C] uppercase font-bold">Groups</h2>
@@ -33,13 +60,24 @@ export default function Groups({setPath}:{setPath:(path: string)=>any}) {
         <Card label="create" src={plus} to="/groups/create" />
         <Card label="delete" src={trash} to="/groups/delete" />
       </div>
-      <div className="mt-5 flex flex-wrap space-x-2 space-y-2">
-        {
-          groups.map((group)=>(
-            <GroupCard title={group.title} handleClick={handleClick} />
-          ))
-        }
-      </div>
+      <ListDisplay
+          data={groups}
+          error={error}
+          loading={loading}
+          renderItem={(group)=>{
+            const season = seasonMap.get(group?.season_id || "No Season");
+            const seasonName = season?.title;
+            const language = languageMap.get(season?.language_id || "");
+            const languageName = language?.title;
+            return <GroupCard 
+                      title={group.title}
+                      season={seasonName}
+                      language={languageName}
+                      handleClick={()=>{}}/>
+          }}
+          emptyMessage="No Lessons Found!"
+          className="mt-10 ml-4 gap-4 h-[75%] overflow-y-scroll items-start"
+        />
     </section>
   )
 }

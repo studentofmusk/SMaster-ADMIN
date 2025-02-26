@@ -22,8 +22,6 @@ export default function LessonDelete({setPath}:{setPath:(path: string)=>any}) {
   const [languageMap, setLanguageMap] = useState<Map<string, ILanguage>>(new Map());
   
   const handleDelete = async(id: string, lesson_type: string)=>{
-    alert("Not Implimented yet!")
-    return
     try {
       const response = await deleteLesson(delete_lesson, "POST", {lesson_id:id});
       if(response.success){

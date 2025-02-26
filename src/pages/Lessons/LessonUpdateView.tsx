@@ -242,7 +242,6 @@ export default function LessonUpdateView({setPath}:{setPath:(path: string)=>void
                     <span className='text-[#EB5A3C]' >Total XP:</span>
                     <span className='uppercase' >{lesson?.total_xp || 0}</span>
                 </div>
-                
 
             </div> 
         <button onClick={handleUpdate} disabled={updateLoading} className={`uppercase text-white bg-[#EB5A3C] py-2 px-4 ${updateLoading?"bg-orange-400":""}`} >{updateLoading?"Wait...":"Update"}</button>
