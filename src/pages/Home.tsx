@@ -35,7 +35,7 @@ export default function Home({setPath}:{setPath:(path: string)=>any}) {
   return (
     <section className="px-10">
       <h2 className="text-[#EB5A3C] uppercase font-bold">Dashboard</h2>
-      <div className="flex flex-wrap p-10 space-x-10 space-y-10 w-[70vw]">
+      <div className="flex flex-wrap p-10 space-x-10 space-y-10 ">
         <Box label="Languages" to="/languages" src={sound} />
         <Box label="Seasons" to="/seasons" src={slides} />
         <Box label="Groups" to="/groups" src={groups} />
