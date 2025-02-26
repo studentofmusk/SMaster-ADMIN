@@ -22,7 +22,7 @@ export interface ILesson {
         topic_id: string;
         skippable: boolean;
         xp: number;
-        _id: string;
+        _id?: string;
     }[];
     __v: number;
 }

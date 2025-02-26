@@ -6,12 +6,6 @@ import mini_play from "../images/utils/mini_play.png";
 import mini_sound from "../images/utils/mini_sound.png";
 import mini_trash from "../images/utils/mini_trash.png";
 import { IVideo } from "../pages/Videos";
-import { ILecture } from "../pages/Lecture";
-import { IT2Video } from "../pages/T2Video";
-import { IV2Text } from "../pages/V2Text";
-import { IV2Action } from "../pages/V2Action";
-import { IT2Action } from "../pages/T2Action";
-import { ILesson, TopicTypes } from "../pages/Lessons";
 
 
 interface ListDisplayProps<T> {
@@ -646,6 +640,97 @@ export const V2TextCardDelete = ({ title, url, audio, thumbnail, options, handle
     </div>
   );
 };
+export const V2TextCardCustom = ({ title, url, audio, thumbnail, options, button_label="click", handleClick
+}: {
+  title: string;
+  url: string;
+  audio: string;
+  thumbnail: string;
+  options:string[];
+  button_label: string;
+  handleClick: ()=>any;
+}) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Handle Audio Play/Pause
+  const handleAudioToggle = () => {
+    if (audioRef.current) {
+      if (isAudioPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsAudioPlaying(!isAudioPlaying);
+    }
+  };
+
+  return (
+    <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+      {/* Video or Thumbnail */}
+      <div className="relative w-full h-32 rounded overflow-hidden cursor-pointer">
+        {isPlaying ? (
+          <video
+            src={url}
+            muted={true}
+            className="w-full h-full object-cover"
+            autoPlay
+            onEnded={() => setIsPlaying(false)}
+            onClick={() => setIsPlaying(false)}
+          />
+        ) : (
+          <img
+            src={thumbnail}
+            alt="Thumbnail"
+            className="w-full h-full object-cover"
+            onClick={() => setIsPlaying(true)}
+          />
+        )}
+
+        {/* Play Button Overlay */}
+        {!isPlaying && (
+          <div
+            className="absolute inset-0 flex items-center justify-center bg-cover"
+            style={{ backgroundImage: `url(${thumbnail})` }}
+            onClick={() => setIsPlaying(true)}
+          >
+            <img src={mini_play} alt="Play Icon" className="w-12 h-12" />
+          </div>
+        )}
+      </div>
+
+      {/* Details */}
+      <div className="mt-8">
+          <div className="mx-2 flex justify-between items-center">
+                <div className="text-sm uppercase font-bold">{title}</div>
+                {/* Audio Play Button */}
+                <button
+                      onClick={handleAudioToggle}
+                      className={`p-2 rounded-full ${isAudioPlaying ? "bg-green-500" : "bg-[#EB5A3C] bg-opacity-50"}`}
+                >
+                      <img src={mini_sound} alt="Play Audio" className="w-6 h-6" />
+                </button>
+          </div>
+      </div>
+      
+      {/* Options */}
+      {options && options.length > 0
+      ?<div className="mt-4 flex flex-wrap items-center justify-start space-x-1">
+          {options.map((option)=>(
+            <div className={` ${title === option?"bg-green-400":"bg-red-400"} uppercase p-1 text-white  text-sm font-bold border border-gray-400 shadow-sm rounded-sm`}>{option}</div>
+          ))}
+        </div>
+      :<center className="mt-4">No options</center>}
+      
+
+      <button onClick={handleClick} className="mt-2 w-full rounded-sm text-center bg-[#EB5A3C] text-white uppercase font-bold" >{button_label}</button>
+
+      {/* Hidden Audio Element */}
+      <audio ref={audioRef} src={audio} onEnded={()=>setIsAudioPlaying(false)} />
+    </div>
+  );
+};
 export const T2VideoCard = ({ title, options
 }: {
   title: string;
@@ -901,7 +986,7 @@ export const T2ActionCard = ({ title, action_id
 }) => {
 
   return (
-    <div className="w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
+    <div className="shrink-0 w-60 bg-white-100 rounded-lg p-3 shadow-xl text-gray-600  border border-gray-200" >
 
       {/* Details */}
       <div className="mt-4">
