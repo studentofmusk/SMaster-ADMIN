@@ -29,3 +29,5 @@ export const create_video = "/api/course/create-video";``
 
 
 export const add_season = "/api/course/add-season";
+
+export const update_lesson = "/api/course/update-lesson"
