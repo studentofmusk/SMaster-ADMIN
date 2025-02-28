@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react"
-
-// Icons
-import plus from "../images/utils/plus.png";
-import trash from "../images/utils/trash.png";
 import { Card, GroupCard, ListDisplay } from "../components/Tools";
-import { defaultGroups } from "./default";
 import { useAPI } from "../hooks/useAPI";
 import { get_groups, get_languages, get_seasons } from "../utils/apis";
 import { ILanguage } from "./Languages";
 import { ISeason } from "./Seasons";
+
+
+// Icons
+import plus from "../images/utils/plus.png";
+import trash from "../images/utils/trash.png";
+import update from "../images/utils/update.png";
+import { useNavigate } from "react-router";
+
 
 export interface IGroup{
   _id: string;
@@ -25,12 +28,14 @@ export default function Groups({setPath}:{setPath:(path: string)=>any}) {
   const {data: languages, fetchAPI: getLanguages} = useAPI<ILanguage[]>();
   const {data: seasons, fetchAPI: getSeasons} = useAPI<ISeason[]>();
 
+  // States
+  const navigate = useNavigate();
   // Maps
   const [languageMap, setLanguageMap] = useState<Map<string, ILanguage>>(new Map);
   const [seasonMap, setSeasonMap] = useState<Map<string, ISeason>>(new Map);
 
-  const handleClick = ()=>{
-
+  const handleClick = (id: string)=>{
+    navigate("view?id="+id);
   }
 
   useEffect(()=>{
@@ -59,6 +64,7 @@ export default function Groups({setPath}:{setPath:(path: string)=>any}) {
       <div className="mt-4 flex space-x-4">
         <Card label="create" src={plus} to="/groups/create" />
         <Card label="delete" src={trash} to="/groups/delete" />
+        <Card label="update" src={update} to="/groups/update" />
       </div>
       <ListDisplay
           data={groups}
@@ -73,7 +79,7 @@ export default function Groups({setPath}:{setPath:(path: string)=>any}) {
                       title={group.title}
                       season={seasonName}
                       language={languageName}
-                      handleClick={()=>{}}/>
+                      handleClick={()=>handleClick(group._id)}/>
           }}
           emptyMessage="No Lessons Found!"
           className="mt-10 ml-4 gap-4 h-[75%] overflow-y-scroll items-start"
