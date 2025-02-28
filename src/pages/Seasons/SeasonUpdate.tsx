@@ -1,37 +1,26 @@
 import { useEffect, useState } from "react"
-import {ListDisplay, SeasonCardDelete } from "../../components/Tools";
+import {ListDisplay, SeasonCard } from "../../components/Tools";
 import { ISeason } from "../Seasons";
 import { useAPI } from "../../hooks/useAPI";
-import { delete_season, get_languages, get_seasons } from "../../utils/apis";
+import { get_languages, get_seasons } from "../../utils/apis";
 import { ILanguage } from "../Languages";
+import { useNavigate } from "react-router";
 
 
-export default function SeasonDelete({setPath}:{setPath:(path: string)=>any}) {
+export default function SeasonUpdate({setPath}:{setPath:(path: string)=>any}) {
   
     const {data: seasons, fetchAPI:getSeasons, error, loading} = useAPI<ISeason[]>();
     const {data: languages, fetchAPI:getLanguages} = useAPI<ILanguage[]>();
-    const {fetchAPI: deleteSeason} = useAPI<ISeason>();
+
 
   // Maps
   const [languageMap, setLanguageMap] = useState<Map<string, ILanguage>>(new Map);
 
+    // States
+    const navigate = useNavigate();
 
-  const handleDelete = async(id:string, title: string)=>{
-    try {
-      const response = await deleteSeason(delete_season, 'POST', {
-        season_id:id
-      });
-
-      if(response.success){
-        alert(`Season [${title}] is Deleted!`);
-        getSeasons(get_seasons);
-      }
-      else{
-        alert(response.message);
-      }
-    } catch (error) {
-      alert("Something went wrong!");
-    }
+  const handleClick = (id:string)=>{
+    navigate("view?id="+id);
   }
 
   useEffect(()=>{
@@ -55,7 +44,7 @@ export default function SeasonDelete({setPath}:{setPath:(path: string)=>any}) {
   
   return (
     <section className="px-10 h-[85vh]">
-      <h2 className="text-[#EB5A3C] uppercase font-bold">Delete Seasons</h2>
+      <h2 className="text-[#EB5A3C] uppercase font-bold">Update Seasons</h2>
 
       <ListDisplay
         loading={loading}
@@ -64,9 +53,9 @@ export default function SeasonDelete({setPath}:{setPath:(path: string)=>any}) {
         renderItem={(season) =>{
           let language = languageMap.get(season.language_id);
           return (
-            <SeasonCardDelete
+            <SeasonCard
             title={season.title} 
-            handleDelete={()=>handleDelete(season._id, season.title)} 
+            handleClick={()=>handleClick(season._id)} 
             language={language?.title}
             />
           )

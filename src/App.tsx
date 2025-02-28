@@ -39,6 +39,12 @@ import T2ActionDelete from './pages/T2Action/T2ActionDelete'
 import LessonView from './pages/Lessons/LessonView'
 import LessonUpdateView from './pages/Lessons/LessonUpdateView'
 import LessonUpdate from './pages/Lessons/LessonUpdate'
+import GroupUpdate from './pages/Groups/GroupUpdate'
+import GroupUpdateView from './pages/Groups/GroupUpdateView'
+import GroupView from './pages/Groups/GroupView'
+import SeasonView from './pages/Seasons/SeasonView'
+import SeasonUpdate from './pages/Seasons/SeasonUpdate'
+import SeasonUpdateView from './pages/Seasons/SeasonUpdateView'
 
 
 function App() {
@@ -64,12 +70,25 @@ function App() {
           <Route index element={<Seasons setPath={setPath}/>} />
           <Route path='create' element={<SeasonCreate setPath={setPath}/>} />
           <Route path='delete' element={<SeasonDelete setPath={setPath}/>} />
+          <Route path='view' element={<SeasonView setPath={setPath}/>} />
+
+          <Route path='update' >
+            <Route index element={<SeasonUpdate setPath={setPath}/>} />
+            <Route path='view' element={<SeasonUpdateView setPath={setPath}/>} />
+          </Route>
         </Route>
 
         <Route path='/groups'>
           <Route index element={<Groups setPath={setPath}/>} />
           <Route path='create' element={<GroupCreate setPath={setPath}/>} />
           <Route path='delete' element={<GroupDelete setPath={setPath}/>} />
+          <Route path='view' element={<GroupView setPath={setPath}/>} />
+          
+          <Route path='update' >
+            <Route index element={<GroupUpdate setPath={setPath}/>} />
+            <Route path='view' element={<GroupUpdateView setPath={setPath}/>} />
+          </Route>
+            
         </Route>
         
         <Route path='/lessons'>
@@ -77,11 +96,12 @@ function App() {
           <Route path='create' element={<LessonCreate setPath={setPath}/>} />
           <Route path='delete' element={<LessonDelete setPath={setPath}/>} />
           <Route path='view' element={<LessonView setPath={setPath}/>} />
+          
           <Route path='update' >
             <Route index element={<LessonUpdate setPath={setPath}/>} />
             <Route path='view' element={<LessonUpdateView setPath={setPath}/>} />
-            
           </Route>
+            
         </Route>
         
         <Route path='/lecture'>

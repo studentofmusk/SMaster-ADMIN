@@ -212,19 +212,31 @@ export const LanguageCardDelete = ({title, handleClick}:{title:string, handleCli
     </div>
   )
 } 
-export const SeasonCard = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
+export const SeasonCard = ({title, language, handleClick}:{title:string, language?: string, handleClick:()=>any})=>{
   return (
-    <div onClick={handleClick} className="cursor-pointer w-40 h-20 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-xl uppercase">
-      <div>{title}</div>
-    </div>
+    <div onClick={handleClick} className="shrink-0 relative w-60 h-32 cursor-pointer flex justify-center items-center rounded-sm border border-gray-300 shadow-lg bg-[#EB5A3C] text-white text-lg uppercase">
+        
+      <div className="flex flex-col justify-center items-center w-full h-full">
+        <div className="text-center">{title}</div>
+      </div>
+
+      <div className="absolute bottom-0 left-0 bg-white text-[#EB5A3C] text-xs rounded-tr-xs font-bold uppercase p-1" >{language??"No Language"}</div>
+      
+      </div>
   )
 }
-export const SeasonCardDelete = ({title, handleClick}:{title:string, handleClick:()=>any})=>{
+export const SeasonCardDelete = ({title, language, handleDelete}:{title:string, language?: string, handleDelete:()=>any})=>{
   return (
-    <div className="relative w-40 h-20 flex justify-center items-center rounded-sm bg-[#EB5A3C] text-white text-xl uppercase">
-      <div>{title}</div>
-      <img src={mini_trash} className="absolute w-10 bottom-0 right-0 p-3 cursor-pointer" onClick={handleClick}/>
-    </div>
+    <div className="shrink-0 relative w-60 h-32 cursor-pointer flex justify-center items-center rounded-sm border border-gray-300 shadow-lg bg-[#EB5A3C] text-white text-lg uppercase">
+        
+      <div className="flex flex-col justify-center items-center w-full h-full">
+        <div className="text-center">{title}</div>
+      </div>
+
+      <div className="absolute bottom-0 left-0 bg-white text-[#EB5A3C] text-xs rounded-tr-xs font-bold uppercase p-1" >{language??"No Language"}</div>
+      <img src={mini_trash} className="absolute w-10 top-0 right-0 p-3 cursor-pointer" onClick={handleDelete}/>
+      
+      </div>
   )
 }
 export const GroupCard = ({title, language, season, handleClick
@@ -236,7 +248,7 @@ export const GroupCard = ({title, language, season, handleClick
   handleClick:()=>void;
 })=>{
   return (
-    <div onClick={handleClick} className="relative w-60 h-32 cursor-pointer flex justify-center items-center rounded-sm border border-gray-300 shadow-lg bg-[#EB5A3C] text-white text-lg uppercase">
+    <div onClick={handleClick} className="shrink-0 relative w-60 h-32 cursor-pointer flex justify-center items-center rounded-sm border border-gray-300 shadow-lg bg-[#EB5A3C] text-white text-lg uppercase">
         
       <div className="flex flex-col justify-center items-center w-full h-full">
         <div className="text-center">{title}</div>
@@ -256,7 +268,7 @@ export const GroupCardDelete = ({title, language, season, handleDelete
   handleDelete:()=>void;
 })=>{
   return (
-    <div className="relative w-60 h-32 cursor-pointer flex justify-center items-center rounded-sm border border-gray-300 shadow-lg bg-[#EB5A3C] text-white text-lg uppercase">
+    <div className="shrink-0 relative w-60 h-32 cursor-pointer flex justify-center items-center rounded-sm border border-gray-300 shadow-lg bg-[#EB5A3C] text-white text-lg uppercase">
         
       <div className="flex flex-col justify-center items-center w-full h-full">
         <div className="text-center">{title}</div>
@@ -291,7 +303,6 @@ export const LessonCard = ({title, group, language, season, handleClick}:{
       </div>
   )
 }
-
 export const LessonCardDelete = ({title, group, language, season, handleDelete}:{
   title:string;
   group:string | undefined;

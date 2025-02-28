@@ -27,14 +27,8 @@ export default function SeasonCreate({setPath}:{setPath:(path: string)=>any}) {
       
       const response = await SeasonAPI(create_season, "POST", {title, language_id:languageId});
       if(response.success){
-        const season_id = response.data?._id;
-        const res = await SeasonAPI(add_season, "POST", {season_id, language_id: languageId});
-        if(res.success){
-          setTitle("");
-          alert("Season Created and Added Successfully!");
-        }else{
-          alert("Season created! but not associated with Language, due to " + res.message)
-        }
+        alert("Season Created and Added Successfully!");
+        setTitle("");
       }else{
         alert(response.message);
       }

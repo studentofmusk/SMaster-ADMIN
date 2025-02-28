@@ -9,6 +9,7 @@ export const get_v2action = "/api/course/get-v2action";
 export const get_t2action = "/api/course/get-t2action";
 export const get_videos = "/api/course/get-videos";
 
+export const delete_season = "/api/course/delete-season";
 export const delete_group = "/api/course/delete-group";
 export const delete_lesson = "/api/course/delete-lesson";
 export const delete_lecture = "/api/course/delete-lecture";
@@ -32,4 +33,6 @@ export const create_video = "/api/course/create-video";``
 
 export const add_season = "/api/course/add-season";
 
+export const update_season = "/api/course/update-season"
+export const update_group = "/api/course/update-group"
 export const update_lesson = "/api/course/update-lesson"
