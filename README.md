@@ -1,50 +1,28 @@
-# React + TypeScript + Vite
+# SMaster Admin - Course Management Panel (Vite + React + TypeScript)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the admin dashboard for the SMaster project. It allows administrators to manage sign language courses, track user progress, and control content through a fast and responsive web interface built with Vite, React, and TypeScript.
 
-Currently, two official plugins are available:
+## Features
+- Create, update, and delete courses and lessons
+- Manage users and view their learning progress
+- Fast development environment using Vite
+- Fully typed with TypeScript
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- [Vite](https://vitejs.dev/) - Lightning-fast build tool
+- [React](https://react.dev/) - UI library
+- [TypeScript](https://www.typescriptlang.org/) - Typed JavaScript
+- [Axios](https://axios-http.com/) - API requests
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
 
-## Expanding the ESLint configuration
+## Prerequisites
+- Node.js (>= 16.x recommended)
+- npm or yarn
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Setup Instructions
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+```bash
+git clone https://github.com/studentofmusk/SMaster-ADMIN
+cd SMaster-ADMIN
+npm install
+npm run dev
